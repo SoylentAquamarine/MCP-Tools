@@ -1,0 +1,17 @@
+{
+  "providers": {
+    "openai": {
+      "type": "openai",
+      "enabled": true,
+      "defaultModel": "gpt-4.1-mini",
+      "secretRef": "provider/openai/api-key"
+    },
+    "ollama": {
+      "type": "ollama",
+      "enabled": true,
+      "baseUrl": "http://localhost:11434",
+      "defaultModel": "qwen2.5-coder:7b",
+      "secretRef": null
+    }
+  }
+}
