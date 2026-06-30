@@ -12,6 +12,7 @@ MCP-Tools/
 
   docs/
     PROJECT-STRUCTURE.md
+    SECRETS-STORE.md
 
   tools/
     README.md
@@ -28,11 +29,13 @@ MCP-Tools/
 ### `docs/`
 Project-wide documentation and architecture notes.
 
+Use this area to explain concepts shared by multiple tools, such as the shared secrets store and how other MCP tools use `secretRef` values.
+
 ### `tools/`
 Each MCP tool gets its own folder. The tool folder should contain its README, design notes, examples, and later source code.
 
 ### `tools/secrets/`
-The first tool area. This will define the shared local secrets model used by future MCP tools.
+The first tool area. This folder is for the workings of the Secrets app itself: behavior, commands, implementation notes, examples, and eventually source code.
 
 ## Planned Tool Folders
 
