@@ -1,0 +1,17 @@
+{
+  "feeds": {
+    "mcp-news": {
+      "url": "https://example.com/feed.xml",
+      "enabled": true,
+      "auth": null
+    },
+    "private-feed": {
+      "url": "https://example.com/private-feed.xml",
+      "enabled": false,
+      "auth": {
+        "type": "bearer",
+        "secretRef": "rss/private-feed/token"
+      }
+    }
+  }
+}
