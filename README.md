@@ -23,8 +23,9 @@ Start here:
 
 - `INDEX.md` — current repository file map
 - `docs/PROJECT-STRUCTURE.md` — folder structure and layout rules
-- `tools/secrets/README.md` — first tool area
-- `tools/secrets/DESIGN.md` — secrets design notes
+- `docs/SECRETS-STORE.md` — shared secrets store concept and how other tools use it
+- `tools/secrets/README.md` — Secrets tool app overview
+- `tools/secrets/DESIGN.md` — Secrets tool implementation design notes
 
 ## Planned Tools
 
