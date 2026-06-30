@@ -1,0 +1,14 @@
+{
+  "readOnly": true,
+  "allowServiceRestart": false,
+  "allowProcessKill": false,
+  "allowRegistryWrite": false,
+  "allowedEventLogs": [
+    "System",
+    "Application"
+  ],
+  "blockedPaths": [
+    "%APPDATA%\\VTX\\MCP\\Secrets",
+    "C:\\ProgramData\\VTX\\MCP\\Secrets"
+  ]
+}
