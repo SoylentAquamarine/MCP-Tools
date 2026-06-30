@@ -24,6 +24,7 @@ Start here:
 - `INDEX.md` — current repository file map
 - `docs/PROJECT-STRUCTURE.md` — folder structure and layout rules
 - `docs/SECRETS-STORE.md` — shared secrets store concept and how other tools use it
+- `tools/README.md` — tool folder overview
 - `tools/secrets/README.md` — Secrets tool app overview
 - `tools/secrets/DESIGN.md` — Secrets tool implementation design notes
 
@@ -32,10 +33,12 @@ Start here:
 Initial tool ideas:
 
 - `VTX-MCP-Secrets` — local secret references and encrypted secret storage
-- `VTX-MCP-AIBroker` — route requests to configured AI providers
+- `VTX-MCP-AI` — route requests to configured AI providers
+- `VTX-MCP-Terminal` — controlled local/remote command execution
 - `VTX-MCP-RSS` — fetch, cache, and summarize RSS feeds
-- `VTX-MCP-SSH` — SSH-based remote administration tools
 - `VTX-MCP-SNMP` — SNMP discovery and monitoring counter browser
+- `VTX-MCP-Files` — controlled filesystem access and job folders
+- `VTX-MCP-Git` — safe Git repository inspection and actions
 - `VTX-MCP-Windows` — Windows administration tools
 
 ## Architecture
