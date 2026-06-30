@@ -1,0 +1,20 @@
+{
+  "devices": {
+    "core-switch-01": {
+      "host": "192.168.1.10",
+      "port": 161,
+      "version": "v3",
+      "username": "monitor",
+      "authProtocol": "SHA",
+      "authPasswordRef": "snmp/core-switch-01/auth-password",
+      "privacyProtocol": "AES",
+      "privacyPasswordRef": "snmp/core-switch-01/privacy-password"
+    },
+    "legacy-printer-01": {
+      "host": "192.168.1.50",
+      "port": 161,
+      "version": "v2c",
+      "communityRef": "snmp/legacy-printer-01/community"
+    }
+  }
+}
