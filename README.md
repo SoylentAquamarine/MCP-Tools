@@ -17,6 +17,15 @@ The tools are intended to be:
 - usable without a cloud account
 - usable by both AI clients and normal applications
 
+## Navigation
+
+Start here:
+
+- `INDEX.md` — current repository file map
+- `docs/PROJECT-STRUCTURE.md` — folder structure and layout rules
+- `tools/secrets/README.md` — first tool area
+- `tools/secrets/DESIGN.md` — secrets design notes
+
 ## Planned Tools
 
 Initial tool ideas:
