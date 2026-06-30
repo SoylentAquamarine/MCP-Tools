@@ -15,9 +15,19 @@ INDEX.md      # current file map
 ```text
 docs/
   PROJECT-STRUCTURE.md
+  SECRETS-STORE.md
 ```
 
 Use `docs/` for project-wide design notes that apply to multiple tools.
+
+Examples:
+
+```text
+shared secrets store
+runtime folder layout
+cross-tool workflow rules
+release/install conventions
+```
 
 ## Tools
 
@@ -25,10 +35,12 @@ Use `docs/` for project-wide design notes that apply to multiple tools.
 tools/
   README.md
   secrets/
-  ai-broker/
+  ai/
+  terminal/
   rss/
-  ssh/
   snmp/
+  files/
+  git/
   windows/
 ```
 
@@ -42,6 +54,10 @@ tools/<tool-name>/
   src/            # source code, once implementation starts
   scripts/        # setup/install helper scripts
 ```
+
+Tool-specific internals belong inside that tool folder.
+
+Project-wide concepts belong in `docs/`.
 
 ## Runtime Layout
 
@@ -66,3 +82,5 @@ binaries != config != secrets != work output
 MCP tools expose capabilities. The caller owns the workflow.
 
 That caller may be Claude, another MCP client, or a VTX GUI/control panel.
+
+Tools should not need to talk directly to each other. They can pass data through configured job/work folders when needed.
