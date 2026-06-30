@@ -1,0 +1,10 @@
+{
+  "repositories": {
+    "mcp-tools": {
+      "path": "C:\\git\\MCP-Tools",
+      "allowWrites": false,
+      "allowCommit": false,
+      "allowPush": false
+    }
+  }
+}
