@@ -1,0 +1,13 @@
+{
+  "allowedRoots": [
+    "C:\\ProgramData\\VTX\\MCP\\Work",
+    "C:\\git"
+  ],
+  "blockedRoots": [
+    "%APPDATA%\\VTX\\MCP\\Secrets",
+    "C:\\ProgramData\\VTX\\MCP\\Secrets"
+  ],
+  "maxReadBytes": 1048576,
+  "allowWrites": true,
+  "allowDeletes": false
+}
