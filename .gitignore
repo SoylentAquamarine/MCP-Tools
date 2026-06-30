@@ -1,0 +1,32 @@
+# Build output
+bin/
+build/
+dist/
+out/
+release/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Local runtime data
+*.db
+*.db-shm
+*.db-wal
+*.log
+*.secret
+*.key
+*.pem
+.env
+
+# VTX local folders if testing inside the repo
+Secrets/
+Work/
+Logs/
+Config/local/
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
