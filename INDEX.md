@@ -51,6 +51,9 @@ MCP-Tools/
     snmp/
       README.md
       DESIGN.md
+      ARCHITECTURE.md
+      MCP-SURFACE.md
+      MONITORING-CONSOLE.md
       examples/
         devices.example.json
 
