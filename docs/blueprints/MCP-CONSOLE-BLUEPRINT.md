@@ -157,31 +157,29 @@ Console permissions require approval for file writes.
 
 ## Claude Integration
 
-Direct mode:
+Decided model — see `docs/blueprints/CLAUDE-INTEGRATION.md` for the full spec.
 
 ```text
-Claude client -> individual MCP tools
+Needs a secret     -> external clients go through the Console gateway
+                      (MCP-Console.exe gateway stdio shim -> named pipe -> running Console)
+No secrets needed  -> direct connection to the individual tool is fine
+Tools never pull secrets; the Console pushes them per-operation
 ```
 
-Gateway mode:
-
-```text
-Claude client -> VTX MCP Console/Gateway -> individual MCP tools
-```
-
-Gateway mode is the long-term stronger model because Console permissions still apply.
+Gateway mode keeps Console permissions, secretRef resolution, and Tool Activity logging in effect for external clients.
 
 ## V1 Build Target
 
 ```text
-WPF or Tauri shell
+Go GUI shell (the Console is the only GUI in the project)
 chat pane
 tool-call log
 job file list
 settings page
 tool registry page
 raw JSON config editor
-secrets.json chooser/editor
+master-password secrets manager (create/unlock/lock/edit, see docs/CONSOLE-SECRETS.md)
 basic permissions file
 MCP-AI planning loop
+gateway mode for external MCP clients (see docs/blueprints/CLAUDE-INTEGRATION.md)
 ```

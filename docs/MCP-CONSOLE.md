@@ -104,9 +104,10 @@ tool registry
 tool-call log
 job file viewer
 settings page
-secrets.json manager
+master-password secrets manager (encrypted secrets.json from day 1)
 raw JSON config editor
 basic command permissions
+gateway mode for external MCP clients (Claude Desktop)
 ```
 
 Do not build a custom GUI for every MCP tool.
