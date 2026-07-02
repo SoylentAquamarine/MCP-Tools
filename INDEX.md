@@ -14,6 +14,12 @@ MCP-Tools/
     PROJECT-STRUCTURE.md
     SECRETS-STORE.md
     CONSOLE-SECRETS.md
+    MCP-CONSOLE.md
+
+    blueprints/
+      MCP-CONSOLE-BLUEPRINT.md
+      TOOL-CONFIG-AND-PERMISSIONS.md
+      MCP-REMOTE-BLUEPRINT.md
 
   tools/
     README.md
@@ -30,6 +36,12 @@ MCP-Tools/
         claude_desktop_config.example.json
         secret-metadata.example.json
         secrets-store-config.example.json
+
+    remote/
+      README.md
+      DESIGN.md
+      examples/
+        remote-policy.example.json
 
     ai/
       README.md
@@ -90,12 +102,19 @@ Each MCP tool gets its own folder. The tool folder should contain its README, de
 ### `tools/secrets/`
 Legacy/planning area for secrets-specific design. Current V1 direction is Console-managed `secrets.json`, documented in `docs/CONSOLE-SECRETS.md`.
 
+### `tools/remote/`
+Planned `VTX-MCP-Remote` tool: SSH, Telnet, and command-line FTP in one tool, kept separate from `tools/terminal/` (local execution only). See `docs/blueprints/MCP-REMOTE-BLUEPRINT.md`.
+
+### `docs/blueprints/`
+Cross-cutting architecture blueprints, starting with the VTX MCP Console (GUI shell, agent loop, tool registry, permissions) and how tool configs/permissions are structured.
+
 ## Current Tool Folders
 
 ```text
 tools/secrets/
 tools/ai/
 tools/terminal/
+tools/remote/
 tools/rss/
 tools/snmp/
 tools/files/

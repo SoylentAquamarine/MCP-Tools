@@ -5,9 +5,10 @@ Each folder under `tools/` is a standalone MCP tool area.
 ## Current Tool Skeletons
 
 ```text
-secrets/   local encrypted secret references and management
+secrets/   legacy/planning area — secrets are now Console-managed, see docs/CONSOLE-SECRETS.md
 ai/        AI provider routing and model registry
-terminal/  controlled terminal and command execution
+terminal/  controlled local command execution
+remote/    SSH, Telnet, and command-line FTP to remote hosts
 rss/       RSS feed fetching, caching, and summaries
 snmp/      SNMP discovery and monitoring counter browser
 files/     controlled filesystem access and job folders
@@ -15,16 +16,20 @@ git/       safe Git repository inspection and actions
 windows/   Windows administration helpers
 ```
 
+`tools/secrets/` is not a build target for V1. Secrets are managed by the VTX MCP Console via `secrets.json`; see `docs/CONSOLE-SECRETS.md` and `docs/blueprints/TOOL-CONFIG-AND-PERMISSIONS.md`.
+
+`terminal/` and `remote/` are kept separate on purpose: `terminal` is local command execution, `remote` is SSH/Telnet/FTP to other hosts. See `docs/blueprints/MCP-REMOTE-BLUEPRINT.md`.
+
 ## First Build Order
 
 ```text
-1. secrets
-2. ai
-3. terminal
-4. rss or snmp
+1. ai
+2. terminal
+3. rss or snmp
+4. remote
 ```
 
-`secrets` comes first because several other tools need `secretRef` support.
+`ai` comes first since most workflows need it. `secretRef` resolution comes from the Console, not from a standalone secrets tool.
 
 ## Tool Folder Standard
 
@@ -44,7 +49,8 @@ A tool may eventually build to one standalone executable.
 Example:
 
 ```text
-VTX-MCP-Secrets.exe          # MCP stdio mode
-VTX-MCP-Secrets.exe -gui     # GUI mode
-VTX-MCP-Secrets.exe <cmd>    # CLI/setup mode
+VTX-MCP-Terminal.exe          # MCP stdio mode
+VTX-MCP-Terminal.exe <cmd>    # CLI/setup mode, where applicable
 ```
+
+Tools receive resolved secret values from the Console at runtime; they should not implement their own `-gui` secrets UI. See `docs/MCP-CONSOLE.md`.

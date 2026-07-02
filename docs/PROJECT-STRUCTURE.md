@@ -16,6 +16,13 @@ INDEX.md      # current file map
 docs/
   PROJECT-STRUCTURE.md
   SECRETS-STORE.md
+  CONSOLE-SECRETS.md
+  MCP-CONSOLE.md
+
+  blueprints/
+    MCP-CONSOLE-BLUEPRINT.md
+    TOOL-CONFIG-AND-PERMISSIONS.md
+    MCP-REMOTE-BLUEPRINT.md
 ```
 
 Use `docs/` for project-wide design notes that apply to multiple tools.
@@ -23,20 +30,24 @@ Use `docs/` for project-wide design notes that apply to multiple tools.
 Examples:
 
 ```text
-shared secrets store
+Console-managed secrets (current V1 direction, see CONSOLE-SECRETS.md)
+the VTX MCP Console shell itself (see MCP-CONSOLE.md)
 runtime folder layout
 cross-tool workflow rules
 release/install conventions
 ```
+
+`docs/blueprints/` holds cross-cutting architecture decisions that span more than one tool or define the Console shell. Tool-specific design still belongs in that tool's own `DESIGN.md`.
 
 ## Tools
 
 ```text
 tools/
   README.md
-  secrets/
+  secrets/    # legacy/planning; not a V1 build target, see docs/CONSOLE-SECRETS.md
   ai/
   terminal/
+  remote/
   rss/
   snmp/
   files/
@@ -63,12 +74,27 @@ Project-wide concepts belong in `docs/`.
 
 Installed binaries should not live beside runtime data.
 
-Windows target layout:
+V1 runtime layout is Console-managed (see `docs/blueprints/TOOL-CONFIG-AND-PERMISSIONS.md`):
+
+```text
+C:\AI\
+  config\
+    console.json          # Console shell settings
+    tools-registry.json   # where tools are, how the Console uses them
+    permissions.json       # what the Console's AI loop may call
+    secrets.json           # Console-managed secrets, see CONSOLE-SECRETS.md
+    tools\<tool>.json      # each tool's own config
+  jobs\
+  projects\
+  temp\
+  output\
+  logs\
+```
+
+Installed binaries still follow the original split:
 
 ```text
 C:\Program Files\VTX\MCP\      # installed binaries
-C:\ProgramData\VTX\MCP\        # shared config, work, logs
-%APPDATA%\VTX\MCP\Secrets\     # per-user secrets, where applicable
 ```
 
 Linux/macOS target layout will be defined later, but should follow the same split:
@@ -79,8 +105,6 @@ binaries != config != secrets != work output
 
 ## Design Rule
 
-MCP tools expose capabilities. The caller owns the workflow.
+MCP tools expose capabilities. The Console owns the workflow and orchestration (see `docs/MCP-CONSOLE.md`).
 
-That caller may be Claude, another MCP client, or a VTX GUI/control panel.
-
-Tools should not need to talk directly to each other. They can pass data through configured job/work folders when needed.
+Tools should not need to talk directly to each other. They can pass data through configured job/work folders when needed, or through the Console.
