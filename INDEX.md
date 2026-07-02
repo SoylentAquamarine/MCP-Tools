@@ -13,6 +13,7 @@ MCP-Tools/
   docs/
     PROJECT-STRUCTURE.md
     SECRETS-STORE.md
+    CONSOLE-SECRETS.md
 
   tools/
     README.md
@@ -81,13 +82,13 @@ MCP-Tools/
 ### `docs/`
 Project-wide documentation and architecture notes.
 
-Use this area to explain concepts shared by multiple tools, such as the shared secrets store and how other MCP tools use `secretRef` values.
+Use this area to explain concepts shared by multiple tools, such as Console-managed secrets and how other MCP tools use `secretRef` values.
 
 ### `tools/`
 Each MCP tool gets its own folder. The tool folder should contain its README, design notes, examples, and later source code.
 
 ### `tools/secrets/`
-The first tool area. This folder is for the workings of the Secrets app itself: behavior, commands, implementation notes, examples, and eventually source code.
+Legacy/planning area for secrets-specific design. Current V1 direction is Console-managed `secrets.json`, documented in `docs/CONSOLE-SECRETS.md`.
 
 ## Current Tool Folders
 
