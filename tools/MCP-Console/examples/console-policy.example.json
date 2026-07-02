@@ -1,0 +1,18 @@
+{
+  "defaultMode": "safe",
+  "allowUnsafeMode": false,
+  "blockedPaths": [
+    "%ProgramData%\\VTX-MCP\\MCP-Hub\\secrets.json"
+  ],
+  "profiles": {
+    "safe-windows-info": {
+      "description": "Basic read-only Windows information commands",
+      "allowedCommands": [
+        "whoami",
+        "hostname",
+        "ipconfig",
+        "systeminfo"
+      ]
+    }
+  }
+}

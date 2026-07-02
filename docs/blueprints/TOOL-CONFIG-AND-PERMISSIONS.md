@@ -1,13 +1,13 @@
 # Tool Config and Permissions Blueprint
 
-This blueprint defines how the Console should manage MCP tool configs and command permissions.
+This blueprint defines how the Hub should manage MCP tool configs and command permissions.
 
 ## Separation of Concerns
 
 Keep these separate.
 
 ```text
-Console settings
+Hub settings
   settings for the GUI shell itself
 
 Tool registry
@@ -17,31 +17,38 @@ Tool config
   each tool's own JSON config
 
 Secrets file
-  central secrets.json managed by Console
+  central secrets.json managed by Hub
 
 Permissions
-  what the Console's AI loop is allowed to call
+  what the Hub's AI loop is allowed to call
 ```
 
 ## Folder Layout
 
-Binaries install under `%ProgramFiles%\VTX-MCP\`, one folder per app. Config and runtime data mirror that structure under `%ProgramData%\VTX-MCP\`. Orchestration workspace (jobs, temp, output, logs) belongs to the Console, since the Console owns the loop.
+Binaries install under `%ProgramFiles%\VTX-MCP\`, one folder per app. Config and runtime data mirror that structure under `%ProgramData%\VTX-MCP\`. Orchestration workspace (jobs, temp, output, logs) belongs to the Hub, since the Hub owns the loop.
 
 ```text
 %ProgramFiles%\VTX-MCP\
-  MCP-Console\
-    MCP-Console.exe
+  MCP-Hub\
+    MCP-Hub.exe
   MCP-AI\
     MCP-AI.exe
-  MCP-Files\
-    MCP-Files.exe
+  MCP-Console\
+    MCP-Console.exe
   MCP-Terminal\
-  MCP-Remote\
+    MCP-Terminal.exe
+  MCP-Filesystem\
+    MCP-Filesystem.exe
   MCP-SNMP\
+    MCP-SNMP.exe
+  MCP-RSS\
+    MCP-RSS.exe
+  MCP-Git\
+    MCP-Git.exe
 
 %ProgramData%\VTX-MCP\
-  MCP-Console\
-    console.json
+  MCP-Hub\
+    hub.json
     tools-registry.json
     permissions.json
     secrets.json          # default location; user may relocate (e.g. USB drive)
@@ -52,13 +59,17 @@ Binaries install under `%ProgramFiles%\VTX-MCP\`, one folder per app. Config and
     logs\
   MCP-AI\
     config.json
-  MCP-Files\
+  MCP-Console\
     config.json
   MCP-Terminal\
     config.json
-  MCP-Remote\
+  MCP-Filesystem\
     config.json
   MCP-SNMP\
+    config.json
+  MCP-RSS\
+    config.json
+  MCP-Git\
     config.json
 ```
 
@@ -66,12 +77,12 @@ Binaries install under `%ProgramFiles%\VTX-MCP\`, one folder per app. Config and
 
 ```json
 {
-  "id": "mcp-files",
-  "name": "MCP Files",
-  "executable": "C:\\Program Files\\VTX-MCP\\MCP-Files\\MCP-Files.exe",
-  "configPath": "C:\\ProgramData\\VTX-MCP\\MCP-Files\\config.json",
+  "id": "mcp-filesystem",
+  "name": "MCP Filesystem",
+  "executable": "C:\\Program Files\\VTX-MCP\\MCP-Filesystem\\MCP-Filesystem.exe",
+  "configPath": "C:\\ProgramData\\VTX-MCP\\MCP-Filesystem\\config.json",
   "enabled": true,
-  "permissionsProfile": "default-files"
+  "permissionsProfile": "default-filesystem"
 }
 ```
 
@@ -82,26 +93,26 @@ This belongs to the tool.
 ```json
 {
   "allowedRoots": [
-    "C:\\ProgramData\\VTX-MCP\\MCP-Console\\jobs",
-    "C:\\ProgramData\\VTX-MCP\\MCP-Console\\projects"
+    "C:\\ProgramData\\VTX-MCP\\MCP-Hub\\jobs",
+    "C:\\ProgramData\\VTX-MCP\\MCP-Hub\\projects"
   ],
   "allowWrites": true,
   "allowDeletes": false
 }
 ```
 
-## Console Permission Example
+## Hub Permission Example
 
-This belongs to the Console.
+This belongs to the Hub.
 
 ```json
 {
-  "toolId": "mcp-files",
+  "toolId": "mcp-filesystem",
   "commands": {
-    "files_list": "allow",
-    "files_read": "allow",
-    "files_write": "ask",
-    "files_delete": "disabled"
+    "filesystem_list": "allow",
+    "filesystem_read": "allow",
+    "filesystem_write": "ask",
+    "filesystem_delete": "disabled"
   }
 }
 ```
@@ -139,7 +150,7 @@ secret_using
 destructive
 ```
 
-The Console can use these labels to choose default permissions.
+The Hub can use these labels to choose default permissions.
 
 ## Config Editing
 
@@ -150,7 +161,7 @@ config.example.json
 config.schema.json
 ```
 
-The Console should support:
+The Hub should support:
 
 ```text
 Basic mode:
@@ -166,6 +177,6 @@ For V1, raw JSON editor is enough.
 
 A tool must enforce its own hard limits.
 
-The Console permission layer is extra control, not the only protection.
+The Hub permission layer is extra control, not the only protection.
 
-If another MCP client calls the tool directly, Console permissions do not apply.
+If another MCP client calls the tool directly, Hub permissions do not apply.

@@ -23,31 +23,28 @@ Start here:
 
 - `INDEX.md` — current repository file map
 - `docs/PROJECT-STRUCTURE.md` — folder structure and layout rules
-- `docs/MCP-CONSOLE.md` — the VTX MCP Console GUI shell: tool registry, agent loop, permissions
-- `docs/CONSOLE-SECRETS.md` — current (V1) secrets direction: Console-managed `secrets.json`
-- `docs/blueprints/` — cross-cutting architecture blueprints (Console, tool config/permissions, Remote)
+- `docs/MCP-HUB.md` — the MCP-Hub GUI shell: tool registry, agent loop, permissions
+- `docs/HUB-SECRETS.md` — current (V1) secrets direction: Hub-managed `secrets.json`
+- `docs/blueprints/` — cross-cutting architecture blueprints (Hub, tool config/permissions, Terminal, Claude integration)
 - `tools/README.md` — tool folder overview
 
 ## Planned Tools
 
-Initial tool ideas:
+- `MCP-AI` — route requests to configured AI providers
+- `MCP-Console` — controlled local command execution
+- `MCP-Terminal` — SSH, Telnet, and command-line FTP to remote hosts
+- `MCP-Filesystem` — controlled filesystem access and job folders
+- `MCP-SNMP` — SNMP discovery and monitoring counter browser
+- `MCP-RSS` — fetch, cache, and summarize RSS feeds
+- `MCP-Git` — safe Git repository inspection and actions
 
-- `VTX-MCP-AI` — route requests to configured AI providers
-- `VTX-MCP-Terminal` — controlled local command execution
-- `VTX-MCP-Remote` — SSH, Telnet, and command-line FTP to remote hosts
-- `VTX-MCP-RSS` — fetch, cache, and summarize RSS feeds
-- `VTX-MCP-SNMP` — SNMP discovery and monitoring counter browser
-- `VTX-MCP-Files` — controlled filesystem access and job folders
-- `VTX-MCP-Git` — safe Git repository inspection and actions
-- `VTX-MCP-Windows` — Windows administration tools
-
-Plus the **VTX MCP Console** — the GUI shell (not a standalone MCP tool) that hosts the agent loop, tool registry, permissions, config editing, and Console-managed secrets. See `docs/MCP-CONSOLE.md`.
+Plus the **MCP-Hub** — the GUI shell (not a standalone MCP tool) that hosts the agent loop, tool registry, permissions, config editing, and Hub-managed secrets. See `docs/MCP-HUB.md`.
 
 ## Architecture
 
-Do not build a separate GUI app for every tool. Build standalone MCP tools, and let one Console shell configure, permission, orchestrate, and display them. The Console is the only GUI in the project.
+Do not build a separate GUI app for every tool. Build standalone MCP tools, and let one Hub shell configure, permission, orchestrate, and display them. The Hub is the only GUI in the project.
 
-Everything — the Console and every tool — is written in Go, so the whole suite cross-compiles to Windows, Linux, and macOS from one toolchain.
+Everything — the Hub and every tool — is written in Go, so the whole suite cross-compiles to Windows, Linux, and macOS from one toolchain.
 
 ```text
 MCP-Tool.exe          # MCP stdio mode
@@ -58,12 +55,12 @@ The intended Windows layout (see `docs/blueprints/TOOL-CONFIG-AND-PERMISSIONS.md
 
 ```text
 %ProgramFiles%\VTX-MCP\        # installed binaries, one folder per app
-  MCP-Console\
+  MCP-Hub\
   MCP-AI\
   MCP-<Tool>\
 
 %ProgramData%\VTX-MCP\         # config + runtime data, mirrored per app
-  MCP-Console\                 # console.json, tools-registry.json,
+  MCP-Hub\                     # hub.json, tools-registry.json,
                                # permissions.json, secrets.json,
                                # jobs\ projects\ temp\ output\ logs\
   MCP-AI\
@@ -72,10 +69,10 @@ The intended Windows layout (see `docs/blueprints/TOOL-CONFIG-AND-PERMISSIONS.md
 
 ## Design Rules
 
-- Tools expose capabilities. The Console owns the workflow and orchestration.
+- Tools expose capabilities. The Hub owns the workflow and orchestration.
 - Tools do not need to call each other directly.
 - Shared work should pass through a job/work folder.
-- Tool configs store `secretRef` values, not raw secrets. The Console resolves `secretRef` and passes the value to a tool only for the operation being run.
+- Tool configs store `secretRef` values, not raw secrets. The Hub resolves `secretRef` and passes the value to a tool only for the operation being run.
 - Tools must not print, log, or return secret values.
 
 ## Status

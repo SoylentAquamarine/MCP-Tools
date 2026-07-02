@@ -1,0 +1,60 @@
+{
+  "allowedHosts": [
+    "192.168.1.0/24",
+    "lab-linux-01",
+    "lab-router-01"
+  ],
+  "blockedHosts": [
+    "0.0.0.0/0"
+  ],
+  "protocols": {
+    "ssh": {
+      "enabled": true,
+      "defaultPort": 22,
+      "timeoutSeconds": 30
+    },
+    "telnet": {
+      "enabled": false,
+      "defaultPort": 23,
+      "timeoutSeconds": 30,
+      "warning": "Telnet is plaintext. Use only for lab or legacy devices."
+    },
+    "ftp": {
+      "enabled": false,
+      "defaultPort": 21,
+      "timeoutSeconds": 30,
+      "warning": "FTP is plaintext. Use only for lab or legacy systems."
+    }
+  },
+  "profiles": [
+    {
+      "id": "lab-linux-01",
+      "host": "192.168.1.50",
+      "protocol": "ssh",
+      "port": 22,
+      "username": "stephen",
+      "passwordRef": "ssh/lab-linux-01/password"
+    },
+    {
+      "id": "legacy-router-01",
+      "host": "192.168.1.1",
+      "protocol": "telnet",
+      "port": 23,
+      "username": "admin",
+      "passwordRef": "telnet/legacy-router-01/password"
+    }
+  ],
+  "transcripts": {
+    "enabled": true,
+    "redactSecrets": true,
+    "writeToJobFolder": true
+  },
+  "ftpPolicy": {
+    "allowGet": true,
+    "allowPut": true,
+    "allowDelete": false,
+    "localRoots": [
+      "C:\\ProgramData\\VTX-MCP\\MCP-Hub\\jobs"
+    ]
+  }
+}

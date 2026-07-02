@@ -12,43 +12,43 @@ MCP-Tools/
 
   docs/
     PROJECT-STRUCTURE.md
-    CONSOLE-SECRETS.md
-    MCP-CONSOLE.md
+    HUB-SECRETS.md
+    MCP-HUB.md
 
     blueprints/
-      MCP-CONSOLE-BLUEPRINT.md
+      MCP-HUB-BLUEPRINT.md
       TOOL-CONFIG-AND-PERMISSIONS.md
-      MCP-REMOTE-BLUEPRINT.md
+      MCP-TERMINAL-BLUEPRINT.md
       CLAUDE-INTEGRATION.md
 
   tools/
     README.md
 
-    remote/
-      README.md
-      DESIGN.md
-      examples/
-        remote-policy.example.json
-
-    ai/
+    MCP-AI/
       README.md
       DESIGN.md
       examples/
         providers.example.json
 
-    terminal/
+    MCP-Console/
+      README.md
+      DESIGN.md
+      examples/
+        console-policy.example.json
+
+    MCP-Terminal/
       README.md
       DESIGN.md
       examples/
         terminal-policy.example.json
 
-    rss/
+    MCP-Filesystem/
       README.md
       DESIGN.md
       examples/
-        feeds.example.json
+        filesystem-policy.example.json
 
-    snmp/
+    MCP-SNMP/
       README.md
       DESIGN.md
       ARCHITECTURE.md
@@ -57,23 +57,17 @@ MCP-Tools/
       examples/
         devices.example.json
 
-    files/
+    MCP-RSS/
       README.md
       DESIGN.md
       examples/
-        files-policy.example.json
+        feeds.example.json
 
-    git/
+    MCP-Git/
       README.md
       DESIGN.md
       examples/
         repositories.example.json
-
-    windows/
-      README.md
-      DESIGN.md
-      examples/
-        windows-policy.example.json
 ```
 
 ## Main Areas
@@ -81,28 +75,28 @@ MCP-Tools/
 ### `docs/`
 Project-wide documentation and architecture notes.
 
-Use this area to explain concepts shared by multiple tools, such as Console-managed secrets and how other MCP tools use `secretRef` values.
-
-### `tools/`
-Each MCP tool gets its own folder. The tool folder should contain its README, design notes, examples, and later source code.
-
-### `tools/remote/`
-Planned `VTX-MCP-Remote` tool: SSH, Telnet, and command-line FTP in one tool, kept separate from `tools/terminal/` (local execution only). See `docs/blueprints/MCP-REMOTE-BLUEPRINT.md`.
+Use this area to explain concepts shared by multiple tools, such as Hub-managed secrets and how other MCP tools use `secretRef` values.
 
 ### `docs/blueprints/`
-Cross-cutting architecture blueprints, starting with the VTX MCP Console (GUI shell, agent loop, tool registry, permissions) and how tool configs/permissions are structured.
+Cross-cutting architecture blueprints: the MCP-Hub (GUI shell, agent loop, tool registry, permissions), tool config/permission structure, the MCP-Terminal tool, and external MCP client integration (Claude Desktop).
+
+### `tools/`
+Each MCP tool gets its own folder, named exactly after the tool. The tool folder should contain its README, design notes, examples, and later source code.
+
+`MCP-Console/` is local command execution. `MCP-Terminal/` is SSH/Telnet/FTP sessions to remote hosts. The MCP-Hub GUI shell is not a tool and does not live under `tools/`.
+
+`MCP-SNMP/MONITORING-CONSOLE.md` describes the monitoring console (dashboard) model that MCP-SNMP generates — "console" there is the dashboard sense, unrelated to the MCP-Console tool.
 
 ## Current Tool Folders
 
 ```text
-tools/ai/
-tools/terminal/
-tools/remote/
-tools/rss/
-tools/snmp/
-tools/files/
-tools/git/
-tools/windows/
+tools/MCP-AI/
+tools/MCP-Console/
+tools/MCP-Terminal/
+tools/MCP-Filesystem/
+tools/MCP-SNMP/
+tools/MCP-RSS/
+tools/MCP-Git/
 ```
 
 ## Maintenance Rule
