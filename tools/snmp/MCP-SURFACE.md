@@ -252,7 +252,7 @@ writeLargeOutputToJobFile
 For large discovery output, write to:
 
 ```text
-C:\ProgramData\VTX\MCP\Work\jobs\<jobId>\output\
+%ProgramData%\VTX-MCP\MCP-Console\jobs\<jobId>\output\
 ```
 
 Then return the path and summary.

@@ -60,16 +60,16 @@ VTX-MCP-SNMP.exe <cmd>    # CLI/testing mode
 Windows target layout:
 
 ```text
-C:\Program Files\VTX\MCP\SNMP\VTX-MCP-SNMP.exe
-C:\ProgramData\VTX\MCP\Config\snmp-devices.json
-C:\ProgramData\VTX\MCP\SNMP\snmp-cache.db
-C:\ProgramData\VTX\MCP\SNMP\mibs\
-C:\ProgramData\VTX\MCP\Work\jobs\<jobId>\
+%ProgramFiles%\VTX-MCP\MCP-SNMP\MCP-SNMP.exe
+%ProgramData%\VTX-MCP\MCP-SNMP\snmp-devices.json
+%ProgramData%\VTX-MCP\MCP-SNMP\snmp-cache.db
+%ProgramData%\VTX-MCP\MCP-SNMP\mibs\
+%ProgramData%\VTX-MCP\MCP-Console\jobs\<jobId>\
 ```
 
 ## Secrets Integration
 
-SNMP credentials should use the shared secrets store.
+SNMP credentials should use Console-managed secrets (see `docs/CONSOLE-SECRETS.md`).
 
 Device configs store secret references only.
 

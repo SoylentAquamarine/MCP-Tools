@@ -116,8 +116,8 @@ Commands should return JSON with clear fields.
   "profileId": "lab-linux-01",
   "host": "192.168.1.50",
   "exitCode": 0,
-  "stdoutPath": "C:\\AI\\jobs\\job-001\\output\\ssh-stdout.txt",
-  "stderrPath": "C:\\AI\\jobs\\job-001\\output\\ssh-stderr.txt",
+  "stdoutPath": "C:\\ProgramData\\VTX-MCP\\MCP-Console\\jobs\\job-001\\output\\ssh-stdout.txt",
+  "stderrPath": "C:\\ProgramData\\VTX-MCP\\MCP-Console\\jobs\\job-001\\output\\ssh-stderr.txt",
   "summary": "Command completed."
 }
 ```

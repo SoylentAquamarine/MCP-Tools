@@ -97,7 +97,7 @@ remote_ftp_delete        disabled
 The tool should have its own config file, for example:
 
 ```text
-C:\AI\config\tools\remote.json
+%ProgramData%\VTX-MCP\MCP-Remote\config.json
 ```
 
 That config should contain allowed hosts, protocol settings, and connection profiles.

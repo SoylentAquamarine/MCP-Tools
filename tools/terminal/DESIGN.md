@@ -27,27 +27,27 @@ blocked patterns
 Block access to secrets paths by default:
 
 ```text
-%APPDATA%\VTX\MCP\Secrets\
-C:\ProgramData\VTX\MCP\Secrets\
+%ProgramData%\VTX-MCP\MCP-Console\secrets.json
+the configured secrets file location, wherever the user has placed it (e.g. a USB drive)
 ```
 
 Block obvious secret dump attempts:
 
 ```text
-cat secrets.db
-sqlite3 secrets.db
+type secrets.json
+cat secrets.json
 type *.secret
 powershell history scraping
 ```
 
 ## First Test with Secrets
 
-Use `VTX-MCP-Terminal` to run safe commands while confirming it cannot dump the Secrets store.
+Use `VTX-MCP-Terminal` to run safe commands while confirming it cannot dump the Console-managed secrets file.
 
 Expected:
 
 ```text
-terminal_run whoami                       allowed
-terminal_run dir C:\ProgramData\VTX\MCP   allowed
-terminal_run type %APPDATA%\VTX\MCP\Secrets\secrets.db   denied
+terminal_run whoami                                                allowed
+terminal_run dir %ProgramData%\VTX-MCP                             allowed
+terminal_run type %ProgramData%\VTX-MCP\MCP-Console\secrets.json   denied
 ```

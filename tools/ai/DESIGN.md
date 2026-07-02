@@ -40,7 +40,7 @@ vision
 
 ## First Integration Test with Secrets
 
-1. Add `provider/openai/api-key` through VTX-MCP-Secrets.
+1. Add `provider/openai/api-key` to the Console-managed `secrets.json` (see `docs/CONSOLE-SECRETS.md`).
 2. Add OpenAI provider config with `secretRef`.
-3. Run `ai_health_check`.
-4. Confirm the key is used internally and never printed.
+3. Run `ai_health_check` from the Console, which resolves the ref and passes the value at runtime.
+4. Confirm the key is used internally and never printed, logged, or returned.

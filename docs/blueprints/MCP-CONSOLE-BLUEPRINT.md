@@ -116,7 +116,7 @@ Example:
   "toolId": "mcp-files",
   "command": "files_write",
   "args": {
-    "path": "C:\\AI\\projects\\demo\\index.html",
+    "path": "C:\\ProgramData\\VTX-MCP\\MCP-Console\\projects\\demo\\index.html",
     "contentFrom": "job:generated-html"
   },
   "reason": "Create the requested website entry point.",
@@ -131,7 +131,7 @@ Example:
   "type": "final_answer",
   "summary": "The requested files were created.",
   "outputs": [
-    "C:\\AI\\projects\\demo\\index.html"
+    "C:\\ProgramData\\VTX-MCP\\MCP-Console\\projects\\demo\\index.html"
   ]
 }
 ```
@@ -151,7 +151,7 @@ Console permissions:
 Example:
 
 ```text
-MCP-Files config only allows C:\AI.
+MCP-Files config only allows the Console workspace under %ProgramData%\VTX-MCP\MCP-Console.
 Console permissions require approval for file writes.
 ```
 

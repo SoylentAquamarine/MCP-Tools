@@ -54,7 +54,7 @@
     "allowPut": true,
     "allowDelete": false,
     "localRoots": [
-      "C:\\AI"
+      "C:\\ProgramData\\VTX-MCP\\MCP-Console\\jobs"
     ]
   }
 }

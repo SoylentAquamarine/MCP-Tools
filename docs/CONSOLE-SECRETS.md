@@ -31,7 +31,7 @@ The user can choose the secrets file location.
 Examples:
 
 ```text
-C:\Users\<user>\AppData\Roaming\VTX\MCP\secrets.json
+%ProgramData%\VTX-MCP\MCP-Console\secrets.json
 E:\VTX-MCP\secrets.json
 ```
 

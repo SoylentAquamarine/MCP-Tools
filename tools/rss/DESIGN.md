@@ -9,9 +9,9 @@ RSS should be an MCP tool, not necessarily a background service.
 ## Runtime Data
 
 ```text
-C:\ProgramData\VTX\MCP\RSS\feeds.json
-C:\ProgramData\VTX\MCP\RSS\rss-cache.db
-C:\ProgramData\VTX\MCP\Work\jobs\
+%ProgramData%\VTX-MCP\MCP-RSS\feeds.json
+%ProgramData%\VTX-MCP\MCP-RSS\rss-cache.db
+%ProgramData%\VTX-MCP\MCP-Console\jobs\
 ```
 
 ## Workflow Example

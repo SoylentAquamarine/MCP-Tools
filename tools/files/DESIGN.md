@@ -9,7 +9,7 @@ Provide controlled filesystem access for MCP workflows.
 Tools should pass intermediate files through job folders:
 
 ```text
-C:\ProgramData\VTX\MCP\Work\jobs\<jobId>\
+%ProgramData%\VTX-MCP\MCP-Console\jobs\<jobId>\
   input\
   output\
   temp\
@@ -37,6 +37,6 @@ secret path blocks
 Block secret storage paths by default.
 
 ```text
-%APPDATA%\VTX\MCP\Secrets\
-C:\ProgramData\VTX\MCP\Secrets\
+%ProgramData%\VTX-MCP\MCP-Console\secrets.json
+the configured secrets file location, wherever the user has placed it (e.g. a USB drive)
 ```

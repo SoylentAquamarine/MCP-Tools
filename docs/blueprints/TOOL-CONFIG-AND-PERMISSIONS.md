@@ -23,28 +23,43 @@ Permissions
   what the Console's AI loop is allowed to call
 ```
 
-## Suggested Folder Layout
+## Folder Layout
+
+Binaries install under `%ProgramFiles%\VTX-MCP\`, one folder per app. Config and runtime data mirror that structure under `%ProgramData%\VTX-MCP\`. Orchestration workspace (jobs, temp, output, logs) belongs to the Console, since the Console owns the loop.
 
 ```text
-C:\AI\
-  config\
+%ProgramFiles%\VTX-MCP\
+  MCP-Console\
+    MCP-Console.exe
+  MCP-AI\
+    MCP-AI.exe
+  MCP-Files\
+    MCP-Files.exe
+  MCP-Terminal\
+  MCP-Remote\
+  MCP-SNMP\
+
+%ProgramData%\VTX-MCP\
+  MCP-Console\
     console.json
     tools-registry.json
     permissions.json
-    secrets.json
-    tools\
-      ai.json
-      files.json
-      terminal.json
-      remote.json
-      snmp.json
-      monitor.json
-
-  jobs\
-  projects\
-  temp\
-  output\
-  logs\
+    secrets.json          # default location; user may relocate (e.g. USB drive)
+    jobs\
+    projects\
+    temp\
+    output\
+    logs\
+  MCP-AI\
+    config.json
+  MCP-Files\
+    config.json
+  MCP-Terminal\
+    config.json
+  MCP-Remote\
+    config.json
+  MCP-SNMP\
+    config.json
 ```
 
 ## Tool Registry Entry
@@ -53,8 +68,8 @@ C:\AI\
 {
   "id": "mcp-files",
   "name": "MCP Files",
-  "executable": "C:\\AI\\tools\\VTX-MCP-Files.exe",
-  "configPath": "C:\\AI\\config\\tools\\files.json",
+  "executable": "C:\\Program Files\\VTX-MCP\\MCP-Files\\MCP-Files.exe",
+  "configPath": "C:\\ProgramData\\VTX-MCP\\MCP-Files\\config.json",
   "enabled": true,
   "permissionsProfile": "default-files"
 }
@@ -67,7 +82,8 @@ This belongs to the tool.
 ```json
 {
   "allowedRoots": [
-    "C:\\AI"
+    "C:\\ProgramData\\VTX-MCP\\MCP-Console\\jobs",
+    "C:\\ProgramData\\VTX-MCP\\MCP-Console\\projects"
   ],
   "allowWrites": true,
   "allowDeletes": false

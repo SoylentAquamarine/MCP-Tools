@@ -25,7 +25,6 @@ Start here:
 - `docs/PROJECT-STRUCTURE.md` — folder structure and layout rules
 - `docs/MCP-CONSOLE.md` — the VTX MCP Console GUI shell: tool registry, agent loop, permissions
 - `docs/CONSOLE-SECRETS.md` — current (V1) secrets direction: Console-managed `secrets.json`
-- `docs/SECRETS-STORE.md` — original shared secrets store concept (superseded by `CONSOLE-SECRETS.md` for V1; kept for the `secretRef` pattern and future encrypted-backend ideas)
 - `docs/blueprints/` — cross-cutting architecture blueprints (Console, tool config/permissions, Remote)
 - `tools/README.md` — tool folder overview
 
@@ -46,28 +45,29 @@ Plus the **VTX MCP Console** — the GUI shell (not a standalone MCP tool) that 
 
 ## Architecture
 
-Do not build a separate GUI app for every tool. Build standalone MCP tools, and let one Console shell configure, permission, orchestrate, and display them.
+Do not build a separate GUI app for every tool. Build standalone MCP tools, and let one Console shell configure, permission, orchestrate, and display them. The Console is the only GUI in the project.
+
+Everything — the Console and every tool — is written in Go, so the whole suite cross-compiles to Windows, Linux, and macOS from one toolchain.
 
 ```text
-VTX-MCP-Tool.exe          # MCP stdio mode
-VTX-MCP-Tool.exe <cmd>    # CLI/setup mode, where applicable
+MCP-Tool.exe          # MCP stdio mode
+MCP-Tool.exe <cmd>    # CLI/setup mode, where applicable
 ```
 
-The intended Windows layout (Console-managed, see `docs/blueprints/TOOL-CONFIG-AND-PERMISSIONS.md`):
+The intended Windows layout (see `docs/blueprints/TOOL-CONFIG-AND-PERMISSIONS.md`):
 
 ```text
-C:\AI\
-  config\
-    console.json
-    tools-registry.json
-    permissions.json
-    secrets.json
-    tools\<tool>.json
-  jobs\
-  projects\
-  temp\
-  output\
-  logs\
+%ProgramFiles%\VTX-MCP\        # installed binaries, one folder per app
+  MCP-Console\
+  MCP-AI\
+  MCP-<Tool>\
+
+%ProgramData%\VTX-MCP\         # config + runtime data, mirrored per app
+  MCP-Console\                 # console.json, tools-registry.json,
+                               # permissions.json, secrets.json,
+                               # jobs\ projects\ temp\ output\ logs\
+  MCP-AI\
+  MCP-<Tool>\
 ```
 
 ## Design Rules

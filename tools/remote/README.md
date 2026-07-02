@@ -50,7 +50,7 @@ The tool should have its own config file.
 Example path:
 
 ```text
-C:\AI\config\tools\remote.json
+%ProgramData%\VTX-MCP\MCP-Remote\config.json
 ```
 
 The VTX MCP Console can edit this config directly.

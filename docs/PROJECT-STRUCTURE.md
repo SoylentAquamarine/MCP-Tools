@@ -15,7 +15,6 @@ INDEX.md      # current file map
 ```text
 docs/
   PROJECT-STRUCTURE.md
-  SECRETS-STORE.md
   CONSOLE-SECRETS.md
   MCP-CONSOLE.md
 
@@ -44,7 +43,6 @@ release/install conventions
 ```text
 tools/
   README.md
-  secrets/    # legacy/planning; not a V1 build target, see docs/CONSOLE-SECRETS.md
   ai/
   terminal/
   remote/
@@ -74,27 +72,25 @@ Project-wide concepts belong in `docs/`.
 
 Installed binaries should not live beside runtime data.
 
-V1 runtime layout is Console-managed (see `docs/blueprints/TOOL-CONFIG-AND-PERMISSIONS.md`):
+Windows target layout (see `docs/blueprints/TOOL-CONFIG-AND-PERMISSIONS.md`):
 
 ```text
-C:\AI\
-  config\
-    console.json          # Console shell settings
-    tools-registry.json   # where tools are, how the Console uses them
-    permissions.json       # what the Console's AI loop may call
-    secrets.json           # Console-managed secrets, see CONSOLE-SECRETS.md
-    tools\<tool>.json      # each tool's own config
-  jobs\
-  projects\
-  temp\
-  output\
-  logs\
-```
+%ProgramFiles%\VTX-MCP\          # installed binaries, one folder per app
+  MCP-Console\
+  MCP-AI\
+  MCP-<Tool>\
 
-Installed binaries still follow the original split:
-
-```text
-C:\Program Files\VTX\MCP\      # installed binaries
+%ProgramData%\VTX-MCP\           # config + runtime data, mirrored per app
+  MCP-Console\
+    console.json                 # Console shell settings
+    tools-registry.json          # where tools are, how the Console uses them
+    permissions.json             # what the Console's AI loop may call
+    secrets.json                 # Console-managed secrets, see CONSOLE-SECRETS.md
+    jobs\ projects\ temp\ output\ logs\   # orchestration workspace
+  MCP-AI\
+    config.json                  # each tool's own config
+  MCP-<Tool>\
+    config.json
 ```
 
 Linux/macOS target layout will be defined later, but should follow the same split:
